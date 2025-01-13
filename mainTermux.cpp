@@ -29,7 +29,7 @@ int main() {
     // if true, it is X's turn O's otherwise
     bool turn = true;
     int row, col;
-    int winner;
+    int winner = empty;
     do {
         system("clear");
 
