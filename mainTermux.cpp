@@ -130,23 +130,7 @@ int main() {
         grid[current][row][col] = turn ? X : O;
         
 
-        int zeroCount = 0;
-        int bigZeroCount = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (grid[current][i][j] == empty)
-                    zeroCount++;
-                if (bigGrid[i][j] == empty)
-                    bigZeroCount++;
-            }
-        }
-
-        if (zeroCount == 0 && bigGrid[current / 3][current % 3] == empty)
-            bigGrid[current / 3][current % 3] = draw;
-
-        if (bigZeroCount == 0)
-            winner = draw;
-
+        
         // checking if rows are same
         for (int i = 0; i < 3; i++) {
             if (grid[current][i][0] == grid[current][i][1]
@@ -217,6 +201,23 @@ int main() {
                 winner = bigGrid[2][0];
         }
 
+        int zeroCount = 0;
+        int bigZeroCount = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (grid[current][i][j] == empty)
+                    zeroCount++;
+                if (bigGrid[i][j] == empty)
+                    bigZeroCount++;
+            }
+        }
+
+        if (zeroCount == 0 && bigGrid[current / 3][current % 3] == empty)
+            bigGrid[current / 3][current % 3] = draw;
+
+        if (bigZeroCount == 0)
+            winner = draw;
+        
         // calculating new current big cell
         current = row * 3 + col;
         // passing turn to another player
